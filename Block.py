@@ -19,7 +19,8 @@ class Block:
 		self.hash = self.calculate_hash()
 	
 	def calculate_hash(self):
-		return sha256('{0}{1}{2}{3}'.format(self.previousHash, self.timeStamp, self.nonce, self.data).encode('utf-8')).hexdigest()
+		s = '{0}{1}{2}{3}'.format(self.previousHash, self.timeStamp, self.nonce, self.data)
+		return sha256(s.encode('utf-8')).hexdigest()
 	
 	def mine_block(self, difficulty):
 		target = '0' * difficulty
